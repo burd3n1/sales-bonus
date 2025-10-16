@@ -96,7 +96,7 @@
                 // Посчитать себестоимость (cost) товара как product.purchase_price, умноженную на количество товаров из чека
                 const cost = product.purchase_price * item.quantity;
                 // Посчитать выручку (revenue) с учётом скидки через функцию calculateRevenue
-                const revenue = calculateSimpleRevenue(item);
+                const revenue = calculateRevenue(item);
                 // Посчитать прибыль: выручка минус себестоимость
                 const profit = revenue - cost;
                 // Увеличить общую накопленную прибыль (profit) у продавца
@@ -118,7 +118,7 @@
         // @TODO: Назначение премий на основе ранжирования
         sellerStats.forEach((seller, index) => {
             const total = sellerStats.length;
-            seller.bonus = calculateBonusByProfit(index, total, seller);// Считаем бонус
+            seller.bonus = calculateBonus(index, total, seller);// Считаем бонус
             seller.top_products = Object.entries(seller.products_sold)
                 .map(([sku, quantity]) => ({sku , quantity}))
                 .sort((a, b) => b.quantity - a.quantity)
