@@ -66,7 +66,7 @@
         revenue: 0,
         profit: 0,
         sales_count: 0,
-        products_sold: {}// Заполним начальными данными
+        products_sold: {},// Заполним начальными данными
     }));
 
     // @TODO: Индексация продавцов и товаров для быстрого доступа
@@ -96,7 +96,7 @@
                 // Посчитать себестоимость (cost) товара как product.purchase_price, умноженную на количество товаров из чека
                 const cost = product.purchase_price * item.quantity;
                 // Посчитать выручку (revenue) с учётом скидки через функцию calculateRevenue
-                const revenue = calculateSimpleRevenue(product.sale_price, item.quantity, item.discount);
+                const revenue = calculateSimpleRevenue(item);
                 // Посчитать прибыль: выручка минус себестоимость
                 const profit = revenue - cost;
                 // Увеличить общую накопленную прибыль (profit) у продавца
@@ -112,6 +112,7 @@
         });
 
         // @TODO: Сортировка продавцов по прибыли
+    sellerStats.sort((a, b) => b.profit - a.profit);
 
 
         // @TODO: Назначение премий на основе ранжирования
